@@ -8,7 +8,7 @@ class User < ApplicationRecord
                          port: LDAP_CONFIG['port'],
                          #encryption: :simple_tls,
                          base: LDAP_CONFIG['base'],
-                         auth: {
+                        auth: {
                           method: :simple,
                           username: "#{login}@rsp.ricoh.root",
                           password: password
@@ -50,6 +50,8 @@ class User < ApplicationRecord
       }
     end
     return user_array
+    # return LDAP_CONFIG['port']
+    # return ENV["AD_HOST"]
   end
 
 

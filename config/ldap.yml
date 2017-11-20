@@ -1,16 +1,16 @@
 development:
-  host: <%= ENV["LDAP_HOST"] %>
-  port: <%= ENV["LDAP_PORT"] %>
-  base: <%= ENV["LDAP_BASE"] %>
+  host: <%= ENV["AD_HOST"] %>
+  port: <%= ENV["AD_PORT"] %>
+  base: <%= ENV["AD_BASE"] %>
 
 test:
-  host: examplehost
-  port: 389
-  default_domain: EXAMPLEDOMAIN
-  base: examplebase # OU=US-Tampa Bay,OU=North America,OU=Accounts,DC=ourdomain,DC=org
+  host: <%= ENV["AD_HOST"] %>
+  port: <%= ENV["AD_PORT"] %>
+  # default_domain: EXAMPLEDOMAIN
+  base: <%= ENV["AD_BASE"] %>
 
 production:
-  host: examplehost
-  port: 389
-  default_domain: EXAMPLEDOMAIN
-  base: examplebase # OU=US-Tampa Bay,OU=North America,OU=Accounts,DC=ourdomain,DC=org
+  host: <%= ENV["AD_HOST"] %>
+  port: <%= ENV["AD_PORT"] %>
+  # default_domain: EXAMPLEDOMAIN
+  base: <%= ENV["AD_BASE"] %>

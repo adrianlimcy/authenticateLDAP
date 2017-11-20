@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
       redirect_to login_path,
         # alert: "#{result[0]}, #{result[1]}, #{result[2]}"
         alert: "#{session[:sAMAccountName]}, #{session[:group]}"
+        # alert: "#{result}"
     else
       redirect_to login_path, alert: "Invalid username/password combination"
     end
