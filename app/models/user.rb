@@ -10,7 +10,8 @@ class User < ApplicationRecord
                          base: LDAP_CONFIG['base'],
                         auth: {
                           method: :simple,
-                          username: "#{login}@rsp.ricoh.root",
+                          # username: "#{login}@rsp.ricoh.root",
+                          username: "#{login}",
                           password: password
                          }
     group_mgr = false
@@ -18,17 +19,17 @@ class User < ApplicationRecord
       user_array = []
       ldap.search(
         #base: LDAP_CONFIG['base'],
-        filter: Net::LDAP::Filter.eq("sAMAccountName", login),
-        attributes:  [ "sAMAccountName", "division", "mail", "memberOf" ]#,
+        filter: Net::LDAP::Filter.eq("mail", login),
+        attributes:  [ "sAMAccountName", "division", "mail", "directReports" ]#,
         # return_result: true
       ) { |entry|
         user_array << entry.sAMAccountName.first
         user_array << entry.division.first
         user_array << entry.mail.first
-        # user_array << entry.memberOf.first
+        user_array << entry.directReports
       }
       ldap.search(
-        filter: Net::LDAP::Filter.eq("sAMAccountName", login)
+        filter: Net::LDAP::Filter.eq("mail", login)
       ) { |entry|
         entry.each do |attribute, values|
           if attribute.match(/memberof/)
